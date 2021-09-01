@@ -1,0 +1,26 @@
+get public ip 
+>host myip.opendns.com resolver1.opendns.com | grep "myip" | cut -d " " -f 4
+export TF_VAR_myip="$(host myip.opendns.com resolver1.opendns.com | grep "myip" | cut -d " " -f 4)"
+
+resource "google_compute_firewall" "domain-controller" {
+  name = "domain-controller"
+  network = google_compute_network.pki-network.id
+  allow {
+    protocol = "icmp"
+  }
+  allow {
+    protocol = "tcp"
+    ports = ["53","88","135","139","445","464","636","873","3269","49152-65535"]
+  }
+  allow {
+    protocol ="udp"
+    ports = ["53","88","123","137","138","389","445","464","49152-65535"]
+  }
+  source_tags = ["adds"]
+}
+
+resource "google_compute_firewall" "allow-http" {
+  name = "allow-http"
+  network = google_compute_network.pki-network.id
+  
+}

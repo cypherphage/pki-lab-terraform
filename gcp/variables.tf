@@ -9,3 +9,11 @@ variable "region" {
 variable "zone" {
   type = string
 }
+
+variable "image" {
+  type = string
+}
+
+variable "myip" {
+  type = string
+}
