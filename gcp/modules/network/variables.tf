@@ -1,0 +1,3 @@
+variable "myip" {
+    type = string  
+}

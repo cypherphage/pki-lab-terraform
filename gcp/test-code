@@ -1,7 +1,7 @@
 get public ip 
 >host myip.opendns.com resolver1.opendns.com | grep "myip" | cut -d " " -f 4
-export TF_VAR_myip="$(host myip.opendns.com resolver1.opendns.com | grep "myip" | cut -d " " -f 4)"
 
+export TF_VAR_myip="$(host myip.opendns.com resolver1.opendns.com | grep "myip" | cut -d " " -f 4)"
 export GOOGLE_APPLICATION_CREDENTIALS=~/gcp-creds.json
 
 resource "google_compute_firewall" "domain-controller" {
