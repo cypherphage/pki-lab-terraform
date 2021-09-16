@@ -9,11 +9,9 @@ module "network" {
   myip = var.myip
 }
 
-
 module "compute-instance" {
   source = "./modules/compute-instance"
   subnetwork-id = module.network.subnetworkid
-  image = var.image
 }
 
 
